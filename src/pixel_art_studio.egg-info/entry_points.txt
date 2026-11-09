@@ -1,0 +1,2 @@
+[console_scripts]
+pixel-art-studio = pixel_art_studio.app:main

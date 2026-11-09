@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: pixel-art-studio
+Version: 1.0.0
+Summary: A desktop app for previewing and batch-converting images into pixel art.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.24
+Requires-Dist: Pillow>=10.0
+
+# Pixel Art Studio
+
+A small desktop app for previewing and batch-converting pictures into pixel art. It uses Python, Tkinter, Pillow, and NumPy.
+
+## Features
+
+- **One image:** choose one image, compare eight pixel-art styles, click one or more previews, and save the selected styles.
+- **Multiple images:** select any number of files and convert all of them with one chosen style.
+- **All images in a folder:** choose a folder to recursively find supported images, then batch convert them with one style.
+- Batch modes do not generate or show previews.
+- Results are written as PNG files under the project `results/` folder. Existing output files are not overwritten.
+- Pixel size and palette color count can be adjusted in the app.
+
+Supported inputs: JPEG, PNG, BMP, GIF, TIFF, and WebP. Animated files use their first frame.
+
+## Setup
+
+Python 3.10 or later is required. Tkinter must be available in the Python installation.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .
+```
+
+## Run
+
+```powershell
+python -m pixel_art_studio
+```
+
+Or, after installing the package:
+
+```powershell
+pixel-art-studio
+```
+
+## Tests
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+## Pixel-art styles
+
+Nearest neighbor, box average, adaptive palette, K-means palette, ordered dithering, Floyd–Steinberg dithering, Atkinson dithering, and pixel outlines.

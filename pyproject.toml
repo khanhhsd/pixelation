@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pixel-art-studio"
+version = "1.0.0"
+description = "A desktop app for previewing and batch-converting images into pixel art."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "Pillow>=10.0",
+]
+
+[project.scripts]
+pixel-art-studio = "pixel_art_studio.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
