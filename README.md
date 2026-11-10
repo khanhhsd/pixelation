@@ -96,7 +96,7 @@ python code/run_pipeline.py --input samples --output results/samples
 ```text
 image                       PSNR    SSIM  dE2000  colors   isol%      ms
 101085.jpg                 ...
-Saved 8 result(s) to ...\results\samples
+Saved 9 result(s) to ...\results\samples
 ```
 
 Một số tùy chọn khác:
@@ -123,12 +123,79 @@ python code/evaluate.py --data data/BSDS300/images/test --out results/eval
 
 Thêm `--limit 10 --no-sweep` để chạy thử nhanh.
 
-**Ứng dụng giao diện** (xem trước 9 kiểu trên một ảnh, chuyển đổi hàng loạt):
+**Ứng dụng giao diện** (xem trước 9 kiểu trên một ảnh, chuyển đổi hàng loạt): xem
+hướng dẫn từng bước ở mục 5.1 ngay dưới đây.
+
+### 5.1. Khởi chạy ứng dụng giao diện từng bước (Windows)
+
+**Bước 1. Mở terminal.** Chọn một trong hai cách:
+- Nhấn `Win + R`, gõ `powershell` rồi nhấn Enter; hoặc
+- Trong VS Code: menu **Terminal → New Terminal** (`` Ctrl + ` ``).
+
+**Bước 2. Kiểm tra Python** (cần phiên bản 3.10 trở lên):
+
+```powershell
+python --version
+```
+
+Nếu báo `'python' is not recognized` hoặc mở Microsoft Store, hãy cài Python từ
+https://www.python.org/downloads/ và tích chọn **Add python.exe to PATH** khi cài.
+
+**Bước 3. Di chuyển vào thư mục project** (thay đường dẫn cho đúng với máy của bạn):
+
+```powershell
+cd C:\Users\ADMIN\Downloads\pixelation-main\pixelation-main
+```
+
+**Bước 4. Cài thư viện (chỉ cần làm một lần):**
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+Kiểm tra lại: lệnh sau phải in ra `ok`.
+
+```powershell
+python -c "import PIL, numpy, skimage, matplotlib, tkinter; print('ok')"
+```
+
+**Bước 5. Khởi chạy ứng dụng:**
 
 ```powershell
 cd code
 python -m pixel_art_studio
 ```
+
+Cửa sổ **Pixel Art Studio** sẽ hiện ra sau 1–2 giây. Nếu không thấy, hãy tìm biểu tượng
+Python trên thanh taskbar. Terminal sẽ đứng yên trong lúc ứng dụng chạy; đóng cửa sổ
+ứng dụng để quay lại terminal.
+
+**Bước 6. Dùng thử với một ảnh:**
+1. Ở khung **1 Choose workflow**, giữ lựa chọn **One image · preview and select styles**.
+2. Bấm **Choose image…** và chọn `samples\101087.jpg`.
+3. Đặt **Pixel size = 4**, **Palette colors = 16**, rồi bấm **Generate previews**.
+4. So sánh thẻ **Adaptive palette** (median-cut, mất màu vàng của chiếc váy) với thẻ
+   **Proposed pipeline** (giữ được màu vàng, không có pixel lẻ). Nháy đúp vào một thẻ
+   để xem cỡ lớn, lăn chuột để phóng to hoặc thu nhỏ.
+5. Bấm vào thẻ muốn lưu (có thể chọn nhiều thẻ), rồi bấm **Save selected styles**.
+   Ảnh được lưu vào thư mục `results\` của project.
+
+**Bước 7 (tùy chọn). Chuyển đổi hàng loạt:** chọn **All images · choose a folder**, bấm
+**Choose folder…**, chọn thư mục `samples`, chọn **Proposed pipeline** ở ô
+**Method for batch**, rồi bấm **Convert selected images**.
+
+**Lưu ý với ảnh chụp từ điện thoại (khoảng 12 MP):** đặt **Pixel size từ 12 đến 16**.
+Với Pixel size = 4, việc sinh xem trước cả 9 kiểu mất khoảng 40 giây (hai kiểu dithering
+viết bằng Python thuần rất chậm), và ô quá nhỏ nên ảnh trông gần như ảnh gốc.
+
+**Xử lý lỗi thường gặp:**
+
+| Thông báo lỗi | Cách xử lý |
+|---|---|
+| `No module named 'PIL'` (hoặc `numpy`, `skimage`) | Chạy lại Bước 4 bằng đúng lệnh `python` dùng ở Bước 5 |
+| `No module named pixel_art_studio` | Chưa vào thư mục `code`: chạy `cd code` trước Bước 5 |
+| `No module named 'tkinter'` | Cài lại Python từ python.org và giữ tùy chọn **tcl/tk and IDLE** |
+| Bấm **Generate previews** nhưng chờ rất lâu mới có kết quả | Ảnh quá lớn: tăng **Pixel size** hoặc chờ thêm (xem lưu ý ở trên) |
 
 **Unit test:**
 
