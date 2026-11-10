@@ -6,3 +6,4 @@ results/output/
 results/samples/
 tools/node_modules/
 *.zip
+.vscode/

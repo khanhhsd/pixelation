@@ -20,3 +20,7 @@ pixel-art-studio = "pixel_art_studio.app:main"
 
 [tool.setuptools.packages.find]
 where = ["code"]
+
+[tool.pyright]
+# Lets Pylance/pyright resolve `pixel_art_studio` without installing the package.
+extraPaths = ["code"]
