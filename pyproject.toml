@@ -4,17 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pixel-art-studio"
-version = "1.0.0"
-description = "A desktop app for previewing and batch-converting images into pixel art."
+version = "2.0.0"
+description = "Pixel-art conversion pipeline (denoise, Lab K-means palette, cleanup) with evaluation and desktop app."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.24",
     "Pillow>=10.0",
+    "scikit-image>=0.21",
+    "matplotlib>=3.7",
 ]
 
 [project.scripts]
 pixel-art-studio = "pixel_art_studio.app:main"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["code"]
+
+[tool.pyright]
+# Lets Pylance/pyright resolve `pixel_art_studio` without installing the package.
+extraPaths = ["code"]

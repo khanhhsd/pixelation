@@ -1,0 +1,9 @@
+{
+  "name": "pixel-art-report-tools",
+  "private": true,
+  "description": "Builds the report (.docx) and slides (.pptx) from results/eval and docs/nhom.json",
+  "dependencies": {
+    "docx": "9.5.1",
+    "pptxgenjs": "3.12.0"
+  }
+}
